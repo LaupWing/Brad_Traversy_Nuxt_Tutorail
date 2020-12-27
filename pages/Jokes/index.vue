@@ -1,6 +1,11 @@
 <template>
    <div>
-      Jokes 
+      <joke
+         v-for="joke in jokes"
+         :key="joke.id"
+         :id="joke.id"
+         :joke="joke.joke"
+      /> 
    </div>
 </template>
 
@@ -21,8 +26,7 @@ export default {
       }
       try{
          const res = await axios.get('https://icanhazdadjoke.com/search', config)
-         const json = await res.json()
-         console.log(json)
+         this.jokes = res.data.results
       }catch(e){
          console.log(e)
       }
