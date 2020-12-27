@@ -1,11 +1,15 @@
 <template>
    <div>
-      <app-header/>
-      <Nuxt />
+      Jokes 
    </div>
 </template>
+
 <script>
 export default {
-   
+
 }
 </script>
+
+<style>
+
+</style>
