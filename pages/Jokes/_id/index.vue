@@ -1,11 +1,35 @@
 <template>
    <div>
-      {{$route.params.id}}
+      <nuxt-link to="/jokes">Back to jokes</nuxt-link>
+      <h2>
+         {{joke.joke}}
+      </h2>
    </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-   name: 'SingleJoke'
+   name: 'SingleJoke',
+   data(){
+      return{
+         joke:{}
+      }
+   },
+   async created(){
+      const config = {
+         headers:{
+            'Accept': 'application/json'
+         }
+      }
+      try{
+         const res = await axios.get(`https://icanhazdadjoke.com/j/${this.$route.params.id}`, config)
+         this.joke = res.data 
+         console.log(res)
+      }catch(e){
+         console.log(e)
+      }
+   }
 }
 </script>
